@@ -2,16 +2,34 @@
 
 
 [[projects]]
-  name = "github.com/jessevdk/go-flags"
+  name = "github.com/fatih/color"
   packages = ["."]
-  revision = "c6ca198ec95c841fdb89fc0de7496fed11ab854e"
-  version = "v1.4.0"
+  revision = "5b77d2a35fb0ede96d138fc9a99f5c9b6aef11b4"
+  version = "v1.7.0"
+
+[[projects]]
+  name = "github.com/mattn/go-colorable"
+  packages = ["."]
+  revision = "167de6bfdfba052fa6b2d3664c8f5272e23c9072"
+  version = "v0.0.9"
+
+[[projects]]
+  name = "github.com/mattn/go-isatty"
+  packages = ["."]
+  revision = "0360b2af4f38e8d38c7fce2a9f4e702702d73a39"
+  version = "v0.0.3"
 
 [[projects]]
   name = "github.com/mattn/go-runewidth"
   packages = ["."]
   revision = "9e777a8366cce605130a531d2cd6363d07ad7317"
   version = "v0.0.2"
+
+[[projects]]
+  name = "github.com/onsi/gomega"
+  packages = [".","format","internal/assertion","internal/asyncassertion","internal/oraclematcher","internal/testingtsupport","matchers","matchers/support/goraph/bipartitegraph","matchers/support/goraph/edge","matchers/support/goraph/node","matchers/support/goraph/util","types"]
+  revision = "62bff4df71bdbc266561a0caee19f0594b17c240"
+  version = "v1.4.0"
 
 [[projects]]
   name = "github.com/pivotal-cf/go-pivnet"
@@ -21,8 +39,14 @@
 
 [[projects]]
   branch = "master"
+  name = "github.com/sclevine/spec"
+  packages = [".","report"]
+  revision = "a925ac4bfbc9e5770f1239042559a18443f4d84b"
+
+[[projects]]
+  branch = "master"
   name = "golang.org/x/net"
-  packages = ["context"]
+  packages = ["context","html","html/atom","html/charset"]
   revision = "dfa909b99c79129e1100513e5cd36307665e5723"
 
 [[projects]]
@@ -38,14 +62,26 @@
   revision = "c11f84a56e43e20a78cee75a7c034031ecf57d1f"
 
 [[projects]]
+  name = "golang.org/x/text"
+  packages = ["encoding","encoding/charmap","encoding/htmlindex","encoding/internal","encoding/internal/identifier","encoding/japanese","encoding/korean","encoding/simplifiedchinese","encoding/traditionalchinese","encoding/unicode","internal/gen","internal/tag","internal/utf8internal","language","runes","transform","unicode/cldr"]
+  revision = "f21a4dfb5e38f5895301dc265a8def02365cc3d0"
+  version = "v0.3.0"
+
+[[projects]]
   name = "gopkg.in/cheggaaa/pb.v1"
   packages = ["."]
   revision = "2af8bbdea9e99e83b3ac400d8f6b6d1b8cbbf338"
   version = "v1.0.25"
 
+[[projects]]
+  name = "gopkg.in/yaml.v2"
+  packages = ["."]
+  revision = "5420a8b6744d3b0345ab293f6fcba19c978f1183"
+  version = "v2.2.1"
+
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "82acdeac2efe97c36c44f0fda79d7620943f5e1d68651895091cdc43584c5167"
+  inputs-digest = "d22567433ee03c64c6a98f87d6d63a7a706512eb5a4da3348c9220065710416e"
   solver-name = "gps-cdcl"
   solver-version = 1
