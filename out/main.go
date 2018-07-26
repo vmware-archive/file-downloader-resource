@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"os"
 
-	"github.com/calebwashburn/file-downloader/types"
+	"github.com/pivotalservices/file-downloader-resource/types"
 )
 
 func main() {

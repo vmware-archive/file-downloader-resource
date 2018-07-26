@@ -12,7 +12,7 @@ import (
 
 	"gopkg.in/yaml.v2"
 
-	"github.com/calebwashburn/file-downloader/types"
+	"github.com/pivotalservices/file-downloader-resource/types"
 )
 
 var gitRepoDir string

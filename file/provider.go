@@ -3,7 +3,7 @@ package file
 import (
 	"fmt"
 
-	"github.com/calebwashburn/file-downloader/types"
+	"github.com/pivotalservices/file-downloader-resource/types"
 )
 
 //go:generate counterfeiter -o fakes/fake_provider.go provider.go Provider

@@ -1,12 +1,12 @@
 FROM golang:alpine as builder
-COPY . /go/src/github.com/calebwashburn/file-downloader
+COPY . /go/src/github.com/pivotalservices/file-downloader-resource
 RUN apk update && apk add bash git unzip curl
 ENV CGO_ENABLED 0
 RUN go get -a -t github.com/onsi/gomega
-RUN go build -o /assets/in github.com/calebwashburn/file-downloader/in
-RUN go build -o /assets/out github.com/calebwashburn/file-downloader/out
-RUN go build -o /assets/check github.com/calebwashburn/file-downloader/check
-WORKDIR /go/src/github.com/calebwashburn/file-downloader
+RUN go build -o /assets/in github.com/pivotalservices/file-downloader-resource/in
+RUN go build -o /assets/out github.com/pivotalservices/file-downloader-resource/out
+RUN go build -o /assets/check github.com/pivotalservices/file-downloader-resource/check
+WORKDIR /go/src/github.com/pivotalservices/file-downloader-resource
 RUN set -e; for pkg in $(go list ./...); do \
 		go test -o "/tests/$(basename $pkg).test" -c $pkg; \
 	done

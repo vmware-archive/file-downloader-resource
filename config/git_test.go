@@ -8,7 +8,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/calebwashburn/file-downloader/config"
+	"github.com/pivotalservices/file-downloader-resource/config"
 	. "github.com/onsi/gomega"
 	"github.com/sclevine/spec"
 	"github.com/sclevine/spec/report"

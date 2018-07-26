@@ -102,7 +102,7 @@ resource_types:
 - name: file-downloader
   type: docker-image
   source:
-    repository: cwashburn/file-downloader-resource
+    repository: pivotalservices/file-downloader-resource
 ```
 
 Using Pivnet file provider
@@ -113,7 +113,7 @@ resources:
   source:
     config_provider: git
     version_root: {{folder_path_in_git_repo}}
-    uri: git@github.com:calebwashburn/your_repo.git
+    uri: git@github.com:pivotalservices/your_repo.git
     private_key: {{git_private_key}}
     branch: master
     file_provider: pivnet
@@ -128,7 +128,7 @@ resources:
   source:
     config_provider: git
     version_root: {{folder_path_in_git_repo}}
-    uri: git@github.com:calebwashburn/your_repo.git
+    uri: git@github.com:pivotalservices/your_repo.git
     private_key: {{git_private_key}}
     branch: master
     file_provider: s3
@@ -210,7 +210,7 @@ will stop the build.
 Run the tests with the following command:
 
 ```sh
-docker build -t calebwashburn/file-downloader-resource .
+docker build -t pivotalservices/file-downloader-resource .
 ```
 
 ### Contributing

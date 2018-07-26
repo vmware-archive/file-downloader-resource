@@ -4,7 +4,7 @@ package fakes
 import (
 	"sync"
 
-	"github.com/calebwashburn/file-downloader/file"
+	"github.com/pivotalservices/file-downloader-resource/file"
 )
 
 type FakeProvider struct {
