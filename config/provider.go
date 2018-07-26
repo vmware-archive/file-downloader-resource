@@ -27,6 +27,7 @@ func FromSource(source types.Source) (Provider, error) {
 			PrivateKey:  source.PrivateKey,
 			Username:    source.Username,
 			Password:    source.Password,
+			Path:        source.Path,
 		}, nil
 
 	default:

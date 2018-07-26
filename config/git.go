@@ -35,6 +35,7 @@ type GitProvider struct {
 	Username    string
 	Password    string
 	Depth       string
+	Path        string
 }
 
 //GetVersionInfo - Check returns version of git resource
@@ -71,14 +72,20 @@ func (provider *GitProvider) LatestVersion() (*types.Version, error) {
 	if err != nil {
 		return nil, err
 	}
-	gitVersion := exec.Command("git", "rev-parse", "HEAD")
+
+	var gitVersion *exec.Cmd
+	if len(provider.Path) > 0 {
+		gitVersion = exec.Command("git", "log", "--format='%H'", "--first-parent", "-1", "--", provider.Path)
+	} else {
+		gitVersion = exec.Command("git", "log", "--format='%H'", "--first-parent", "-1")
+	}
 	gitVersion.Dir = gitRepoDir
 	gitVersion.Stderr = os.Stderr
 	out, err := gitVersion.Output()
 	if err != nil {
 		return nil, err
 	}
-	return &types.Version{Ref: strings.Replace(string(out), "\n", "", -1)}, nil
+	return &types.Version{Ref: strings.Replace(strings.Replace(string(out), "\n", "", -1), "'", "", -1)}, nil
 }
 
 func (provider *GitProvider) setUpRepo(revision string) error {

@@ -8,8 +8,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/pivotalservices/file-downloader-resource/config"
 	. "github.com/onsi/gomega"
+	"github.com/pivotalservices/file-downloader-resource/config"
 	"github.com/sclevine/spec"
 	"github.com/sclevine/spec/report"
 )
@@ -75,6 +75,27 @@ func testGitProvider(t *testing.T, when spec.G, it spec.S) {
 			Expect(err).ShouldNot(HaveOccurred())
 			Expect(newVersion).ShouldNot(BeNil())
 			Expect(newVersion.Ref).Should(Equal(strings.Replace(versionCreated, "\n", "", -1)))
+		})
+	})
+
+	when("same version after a commit", func() {
+		it.Before(func() {
+			os.RemoveAll(gitRepoDir)
+		})
+		it("returns a version", func() {
+			provider.Path = "pas.yml"
+			originalVersion, err := provider.LatestVersion()
+			Expect(err).ShouldNot(HaveOccurred())
+			Expect(originalVersion).ShouldNot(BeNil())
+			Expect(originalVersion.Ref).Should(Equal("a2b5630e85d4a72280fd825da5fddad7398aa8e3"))
+
+			_, err = createCommit(gitRepoDir)
+			Expect(err).ShouldNot(HaveOccurred())
+
+			newVersion, err := provider.LatestVersion()
+			Expect(err).ShouldNot(HaveOccurred())
+			Expect(newVersion).ShouldNot(BeNil())
+			Expect(newVersion.Ref).Should(Equal("a2b5630e85d4a72280fd825da5fddad7398aa8e3"))
 		})
 	})
 

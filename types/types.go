@@ -52,6 +52,7 @@ type Source struct {
 	PrivateKey           string             `json:"private_key"`
 	Username             string             `json:"username"`
 	Password             string             `json:"password"`
+	Path                 string             `json:"path"`
 	PivnetToken          string             `json:"pivnet_token"`
 	Bucket               string             `json:"bucket"`
 	AccessKeyID          string             `json:"access_key_id"`
