@@ -2,6 +2,14 @@
 
 A resource that pulls configuration from git to allow externalizing what files to download for a given provider vs having to reconfigure resource parameters on traditional [pivnet resource](https://github.com/pivotal-cf/pivnet-resource)
 
+## Maintainer
+
+* [Caleb Washburn](https://github.com/calebwashburn)
+
+## Support
+
+file downloader resource is a community supported concourse resource.  Opening issues for questions, feature requests and/or bugs is the best path to getting "support".  We strive to be active in keeping this tool working and meeting your needs in a timely fashion.
+
 ## Source Configuration
 
 * `config_provider`: *Optional. Default `git`.* The provider used to pull configuration
@@ -30,16 +38,39 @@ The `git` provider will retrieve new configuration when a commit to repository o
 
 * `password`: *Optional.* Password for HTTP(S) auth when pulling/pushing.
 
-
 ### File Provider
 
-There is 1 supported file provider
+There is 2 supported file provider(2)
 
 ### `pivnet` provider
 
 The `pivnet` provider works by downloading files based on configuration.
 
 * `pivnet_token`: *Required.* Token used to authenticate to pivnet (network.pivotal.io)
+
+### `s3` provider
+
+The `s3` provider works by downloading file from s3
+
+* `bucket`: *Required.* The name of the bucket.
+
+* `access_key_id`: *Optional.* The AWS access key to use when accessing the
+  bucket.
+
+* `secret_access_key`: *Optional.* The AWS secret key to use when accessing
+  the bucket.
+
+* `region_name`: *Optional.* The region the bucket is in. Defaults to
+  `us-east-1`.
+
+* `endpoint`: *Optional.* Custom endpoint for using S3 compatible provider.
+
+* `disable_ssl`: *Optional.* Disable SSL for the endpoint, useful for S3
+  compatible providers without SSL.
+
+* `skip_ssl_verification`: *Optional.* Skip SSL verification for S3 endpoint. Useful for S3 compatible providers using self-signed SSL certificates.
+
+* `use_v2_signing`: *Optional.* Use signature v2 signing, useful for S3 compatible providers that do not support v4.
 
 ### Sample Configuration
 
@@ -72,7 +103,10 @@ resource_types:
   type: docker-image
   source:
     repository: cwashburn/file-downloader-resource
+```
 
+Using Pivnet file provider
+``` yaml
 resources:
 - name: pivnet-files
   type: file-downloader
@@ -84,6 +118,23 @@ resources:
     branch: master
     file_provider: pivnet
     pivnet_token: {{pivnet_token}}
+```
+
+Using s3 file provider
+``` yaml
+resources:
+- name: pivnet-files
+  type: file-downloader
+  source:
+    config_provider: git
+    version_root: {{folder_path_in_git_repo}}
+    uri: git@github.com:calebwashburn/your_repo.git
+    private_key: {{git_private_key}}
+    branch: master
+    file_provider: s3
+    bucket: {{s3_bucket}}
+    access_key_id: {{s3_access_key}}
+    secret_access_key: {{s3_secret_access_key}}
 ```
 
 To retrieve files for a opsman product with a `get`:

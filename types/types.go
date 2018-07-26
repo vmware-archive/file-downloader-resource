@@ -44,15 +44,24 @@ type MetadataField struct {
 }
 
 type Source struct {
-	ConfigProvider ConfigProviderEnum `json:"config_provider"`
-	FileProvider   FileProviderEnum   `json:"file_provider"`
-	VersionRoot    string             `json:"version_root"`
-	URI            string             `json:"uri"`
-	Branch         string             `json:"branch"`
-	PrivateKey     string             `json:"private_key"`
-	Username       string             `json:"username"`
-	Password       string             `json:"password"`
-	PivnetToken    string             `json:"pivnet_token"`
+	ConfigProvider       ConfigProviderEnum `json:"config_provider"`
+	FileProvider         FileProviderEnum   `json:"file_provider"`
+	VersionRoot          string             `json:"version_root"`
+	URI                  string             `json:"uri"`
+	Branch               string             `json:"branch"`
+	PrivateKey           string             `json:"private_key"`
+	Username             string             `json:"username"`
+	Password             string             `json:"password"`
+	PivnetToken          string             `json:"pivnet_token"`
+	Bucket               string             `json:"bucket"`
+	AccessKeyID          string             `json:"access_key_id"`
+	SecretAccessKey      string             `json:"secret_access_key"`
+	RegionName           string             `json:"region_name"`
+	Endpoint             string             `json:"endpoint"`
+	DisableSSL           bool               `json:"disable_ssl"`
+	SkipSSLVerification  bool               `json:"skip_ssl_verification"`
+	ServerSideEncryption string             `json:"server_side_encryption"`
+	UseV2Signing         bool               `json:"use_v2_signing"`
 }
 
 type ConfigProviderEnum string
@@ -67,6 +76,7 @@ type FileProviderEnum string
 const (
 	FileProviderUnspecified FileProviderEnum = ""
 	FileProviderPivnet      FileProviderEnum = "pivnet"
+	FileProviderS3          FileProviderEnum = "s3"
 )
 
 type VersionInfo struct {

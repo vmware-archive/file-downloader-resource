@@ -21,7 +21,7 @@ type PivnetProvider struct {
 	logger         *logshim.LogShim
 }
 
-func NewPivnetProvider(token string) (*PivnetProvider, error) {
+func NewPivnetProvider(token string) (Provider, error) {
 	color.NoColor = false
 	logWriter := os.Stderr
 	logger := log.New(logWriter, "", log.LstdFlags)
