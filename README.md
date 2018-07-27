@@ -38,6 +38,8 @@ The `git` provider will retrieve new configuration when a commit to repository o
 
 * `password`: *Optional.* Password for HTTP(S) auth when pulling/pushing.
 
+* `path`: *Optional.* Path to look for changes in
+
 ### File Provider
 
 There is 2 supported file provider(2)
