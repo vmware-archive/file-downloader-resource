@@ -42,7 +42,7 @@ The `git` provider will retrieve new configuration when a commit to repository o
 
 ### File Provider
 
-There is 2 supported file provider(2)
+There is 2 supported file providers
 
 ### `pivnet` provider
 
