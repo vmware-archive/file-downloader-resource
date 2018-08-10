@@ -86,4 +86,12 @@ type VersionInfo struct {
 	FilePattern         string `yaml:"file_pattern"`
 	StemcellVersion     string `yaml:"stemcell_version"`
 	StemcellFilePattern string `yaml:"stemcell_file_pattern"`
+	StemcellProduct     string `yaml:"stemcell_product"`
+}
+
+func (v *VersionInfo) StemcellProductPath() string {
+	if v.StemcellProduct == "" {
+		return "stemcells"
+	}
+	return v.StemcellProduct
 }

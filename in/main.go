@@ -45,7 +45,7 @@ func main() {
 		fatal("constructing file provider", err)
 	}
 	if request.Params.Stemcell {
-		err = fileProvider.DownloadFile(destination, "stemcells", versionInfo.StemcellVersion, versionInfo.StemcellFilePattern)
+		err = fileProvider.DownloadFile(destination, versionInfo.StemcellProductPath(), versionInfo.StemcellVersion, versionInfo.StemcellFilePattern)
 		if err != nil {
 			fatal("downloading stemcell file", err)
 		}

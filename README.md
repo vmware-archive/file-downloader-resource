@@ -94,6 +94,8 @@ stemcell_file_pattern: "bosh-stemcell-*-vsphere-esxi-ubuntu-trusty-go_agent.tgz"
 
 * `stemcell_file_pattern`: *Optional.* Stemcell File Pattern (for pivnet this is the product glob)
 
+* `stemcell_product`: *Optional.* Default to `stemcells` Stemcells product slug
+
 
 ### Example
 
