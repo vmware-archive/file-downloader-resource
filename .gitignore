@@ -1,3 +1,4 @@
 vendor
 temp
 s3_test.go
+vars.yml

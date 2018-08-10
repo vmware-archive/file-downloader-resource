@@ -4,11 +4,16 @@ import (
 	"encoding/json"
 	"os"
 
+	"log"
+
 	"github.com/pivotalservices/file-downloader-resource/config"
 	"github.com/pivotalservices/file-downloader-resource/types"
 )
 
+var VERSION = "0.0.0-dev"
+
 func main() {
+	log.New(os.Stderr, "", log.LstdFlags).Println("Resource version:", VERSION)
 	var request types.CheckRequest
 	err := json.NewDecoder(os.Stdin).Decode(&request)
 	if err != nil {

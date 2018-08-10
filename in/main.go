@@ -9,8 +9,11 @@ import (
 	"github.com/pivotalservices/file-downloader-resource/types"
 )
 
+var VERSION = "0.0.0-dev"
+
 func main() {
 	if len(os.Args) < 2 {
+		println("version: " + VERSION)
 		println("usage: " + os.Args[0] + " <destination>")
 		os.Exit(1)
 	}
@@ -56,6 +59,7 @@ func main() {
 		json.NewEncoder(os.Stdout).Encode(types.InResponse{
 			Version: request.Version,
 			Metadata: types.Metadata{
+				{Name: "resource_version", Value: VERSION},
 				{Name: "ref", Value: request.Version.Ref},
 				{Name: "product", Value: "stemcells"},
 				{Name: "product_version", Value: versionInfo.StemcellVersion},
@@ -66,6 +70,7 @@ func main() {
 		json.NewEncoder(os.Stdout).Encode(types.InResponse{
 			Version: request.Version,
 			Metadata: types.Metadata{
+				{Name: "resource_version", Value: VERSION},
 				{Name: "ref", Value: request.Version.Ref},
 				{Name: "product", Value: versionInfo.PivotalProduct},
 				{Name: "product_version", Value: versionInfo.Version},
