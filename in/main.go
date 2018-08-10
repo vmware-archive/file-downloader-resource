@@ -45,16 +45,17 @@ func main() {
 		fatal("constructing file provider", err)
 	}
 	if request.Params.Stemcell {
-		err = fileProvider.DownloadFile(destination, versionInfo.StemcellProductPath(), versionInfo.StemcellVersion, versionInfo.StemcellFilePattern)
+		err = fileProvider.DownloadFile(destination, versionInfo.StemcellProductPath(), versionInfo.StemcellVersion, versionInfo.StemcellFilePattern, request.Params.Unpack)
 		if err != nil {
 			fatal("downloading stemcell file", err)
 		}
 	} else {
-		err = fileProvider.DownloadFile(destination, versionInfo.PivotalProduct, versionInfo.Version, versionInfo.FilePattern)
+		err = fileProvider.DownloadFile(destination, versionInfo.PivotalProduct, versionInfo.Version, versionInfo.FilePattern, request.Params.Unpack)
 		if err != nil {
 			fatal("downloading file", err)
 		}
 	}
+
 	if request.Params.Stemcell {
 		json.NewEncoder(os.Stdout).Encode(types.InResponse{
 			Version: request.Version,

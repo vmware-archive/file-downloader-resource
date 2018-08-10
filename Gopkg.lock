@@ -20,6 +20,12 @@
   version = "v1.37.0"
 
 [[projects]]
+  name = "github.com/h2non/filetype"
+  packages = ["."]
+  revision = "cc14fdc9ca0e4c2bafad7458f6ff79fd3947cfbb"
+  version = "v1.0.5"
+
+[[projects]]
   name = "github.com/jmespath/go-jmespath"
   packages = ["."]
   revision = "0b12d6b5"
@@ -91,6 +97,12 @@
   version = "v1.0.25"
 
 [[projects]]
+  name = "gopkg.in/h2non/filetype.v1"
+  packages = ["matchers","types"]
+  revision = "cc14fdc9ca0e4c2bafad7458f6ff79fd3947cfbb"
+  version = "v1.0.5"
+
+[[projects]]
   name = "gopkg.in/yaml.v2"
   packages = ["."]
   revision = "5420a8b6744d3b0345ab293f6fcba19c978f1183"
@@ -99,6 +111,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "3a7681c3c040733a3a73fea90a0547686e5a535fdbecb5dccea0e0ad4a9144c7"
+  inputs-digest = "2e09b8f52d2b1802cbc8a49509495f777ec230e01d294572abd94a025593537b"
   solver-name = "gps-cdcl"
   solver-version = 1

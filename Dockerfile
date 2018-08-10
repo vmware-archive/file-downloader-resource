@@ -1,5 +1,5 @@
 FROM alpine
-RUN apk add --no-cache bash tzdata ca-certificates git jq openssh
+RUN apk add --no-cache bash tzdata ca-certificates git openssh unzip zip gzip tar
 RUN git config --global user.email "git@localhost"
 RUN git config --global user.name "git"
 COPY check-linux /opt/resource/check

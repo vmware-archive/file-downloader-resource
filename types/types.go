@@ -19,6 +19,7 @@ type InRequest struct {
 type InParams struct {
 	Product  string `json:"product"`
 	Stemcell bool   `json:"stemcell"`
+	Unpack   bool   `json:"unpack"`
 }
 
 type InResponse struct {

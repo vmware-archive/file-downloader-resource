@@ -202,6 +202,8 @@ Based on the `version` from the check will parse the configuration file for give
 
 * `stemcell`: *optional. default false* true/false indicates where to download stemcell based on `stemcell_version` and `stemcell_file_pattern` in the <product>.yml file
 
+* `unpack`: *optional. default false* true/false indicates unpack the downloaded file
+
 ### `out`: No-op command
 
 ### Running the tests

@@ -40,7 +40,7 @@ func NewPivnetProvider(token string) (Provider, error) {
 }
 
 //DownloadFile - Downloads file based on version info
-func (p *PivnetProvider) DownloadFile(targetDirectory, productSlug, version, pattern string) error {
+func (p *PivnetProvider) DownloadFile(targetDirectory, productSlug, version, pattern string, unpack bool) error {
 
 	releases, err := p.client.Releases.List(productSlug)
 	if err != nil {
@@ -57,7 +57,7 @@ func (p *PivnetProvider) DownloadFile(targetDirectory, productSlug, version, pat
 			if err != nil {
 				return err
 			}
-			return p.downloadFiles(targetDirectory, pattern, productFiles, productSlug, release.ID)
+			return p.downloadFiles(targetDirectory, pattern, productFiles, productSlug, release.ID, unpack)
 
 		}
 	}
@@ -70,6 +70,7 @@ func (p *PivnetProvider) downloadFiles(
 	productFiles []pivnetapi.ProductFile,
 	productSlug string,
 	releaseID int,
+	unpack bool,
 ) error {
 
 	filtered := productFiles
@@ -98,6 +99,16 @@ func (p *PivnetProvider) downloadFiles(
 		err = p.client.ProductFiles.DownloadForRelease(file, productSlug, releaseID, pf.ID, p.progressWriter)
 		if err != nil {
 			return err
+		}
+		if unpack {
+			mime := archiveMimetype(targetFile)
+			if mime == "" {
+				return fmt.Errorf("not an archive: %s", targetFile)
+			}
+			err = extractArchive(mime, targetFile)
+			if err != nil {
+				return err
+			}
 		}
 	}
 	return nil

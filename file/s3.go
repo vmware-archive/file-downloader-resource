@@ -75,7 +75,7 @@ func NewS3Provider(accessKeyID, secretAccessKey, regionName, endpoint, bucketNam
 }
 
 //DownloadFile - Downloads file based on version info
-func (p *S3Provider) DownloadFile(targetDirectory, productSlug, version, pattern string) error {
+func (p *S3Provider) DownloadFile(targetDirectory, productSlug, version, pattern string, unpack bool) error {
 
 	var (
 		localPath     string
@@ -128,6 +128,17 @@ func (p *S3Provider) DownloadFile(targetDirectory, productSlug, version, pattern
 		_, err = downloader.Download(progressWriterAt{localFile, progress}, getObject)
 		if err != nil {
 			return err
+		}
+
+		if unpack {
+			mime := archiveMimetype(localPath)
+			if mime == "" {
+				return fmt.Errorf("not an archive: %s", localPath)
+			}
+			err = extractArchive(mime, localPath)
+			if err != nil {
+				return err
+			}
 		}
 	} else {
 		return fmt.Errorf("No files found in bucket %s, folder %s matching pattern %s", p.BucketName, productSlug, pattern)

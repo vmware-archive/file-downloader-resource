@@ -10,7 +10,7 @@ import (
 
 // Provider - defines the interface for how to fetch configuration
 type Provider interface {
-	DownloadFile(targetDirectory, productSlug, version, pattern string) error
+	DownloadFile(targetDirectory, productSlug, version, pattern string, unpack bool) error
 }
 
 const maxRetries = 12

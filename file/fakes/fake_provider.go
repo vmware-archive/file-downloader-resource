@@ -8,13 +8,14 @@ import (
 )
 
 type FakeProvider struct {
-	DownloadFileStub        func(targetDirectory, productSlug, version, pattern string) error
+	DownloadFileStub        func(targetDirectory, productSlug, version, pattern string, unpack bool) error
 	downloadFileMutex       sync.RWMutex
 	downloadFileArgsForCall []struct {
 		targetDirectory string
 		productSlug     string
 		version         string
 		pattern         string
+		unpack          bool
 	}
 	downloadFileReturns struct {
 		result1 error
@@ -23,18 +24,19 @@ type FakeProvider struct {
 	invocationsMutex sync.RWMutex
 }
 
-func (fake *FakeProvider) DownloadFile(targetDirectory string, productSlug string, version string, pattern string) error {
+func (fake *FakeProvider) DownloadFile(targetDirectory string, productSlug string, version string, pattern string, unpack bool) error {
 	fake.downloadFileMutex.Lock()
 	fake.downloadFileArgsForCall = append(fake.downloadFileArgsForCall, struct {
 		targetDirectory string
 		productSlug     string
 		version         string
 		pattern         string
-	}{targetDirectory, productSlug, version, pattern})
-	fake.recordInvocation("DownloadFile", []interface{}{targetDirectory, productSlug, version, pattern})
+		unpack          bool
+	}{targetDirectory, productSlug, version, pattern, unpack})
+	fake.recordInvocation("DownloadFile", []interface{}{targetDirectory, productSlug, version, pattern, unpack})
 	fake.downloadFileMutex.Unlock()
 	if fake.DownloadFileStub != nil {
-		return fake.DownloadFileStub(targetDirectory, productSlug, version, pattern)
+		return fake.DownloadFileStub(targetDirectory, productSlug, version, pattern, unpack)
 	} else {
 		return fake.downloadFileReturns.result1
 	}
@@ -46,10 +48,10 @@ func (fake *FakeProvider) DownloadFileCallCount() int {
 	return len(fake.downloadFileArgsForCall)
 }
 
-func (fake *FakeProvider) DownloadFileArgsForCall(i int) (string, string, string, string) {
+func (fake *FakeProvider) DownloadFileArgsForCall(i int) (string, string, string, string, bool) {
 	fake.downloadFileMutex.RLock()
 	defer fake.downloadFileMutex.RUnlock()
-	return fake.downloadFileArgsForCall[i].targetDirectory, fake.downloadFileArgsForCall[i].productSlug, fake.downloadFileArgsForCall[i].version, fake.downloadFileArgsForCall[i].pattern
+	return fake.downloadFileArgsForCall[i].targetDirectory, fake.downloadFileArgsForCall[i].productSlug, fake.downloadFileArgsForCall[i].version, fake.downloadFileArgsForCall[i].pattern, fake.downloadFileArgsForCall[i].unpack
 }
 
 func (fake *FakeProvider) DownloadFileReturns(result1 error) {
