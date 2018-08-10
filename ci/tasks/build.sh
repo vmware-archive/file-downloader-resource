@@ -27,9 +27,9 @@ cp -R ${SOURCE_DIR}/* ${WORKING_DIR}/.
 cd ${WORKING_DIR}
 dep ensure
 
-CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o check-linux -ldflags "-X main.VERSION=${DRAFT_VERSION}" check/main.go
-CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o in-linux -ldflags "-X main.VERSION=${DRAFT_VERSION}" in/main.go
-CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o out-linux out/main.go
+CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o ${OUTPUT_DIR}/check-linux -ldflags "-X main.VERSION=${DRAFT_VERSION}" check/main.go
+CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o ${OUTPUT_DIR}/in-linux -ldflags "-X main.VERSION=${DRAFT_VERSION}" in/main.go
+CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o ${OUTPUT_DIR}/out-linux out/main.go
 
 echo ${DRAFT_VERSION} > ${OUTPUT_DIR}/name
 echo ${DRAFT_VERSION} > ${OUTPUT_DIR}/tag
