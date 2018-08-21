@@ -8,7 +8,7 @@ A resource that pulls configuration from git to allow externalizing what files t
 
 ## Support
 
-file downloader resource is a community supported concourse resource.  Opening issues for questions, feature requests and/or bugs is the best path to getting "support".  We strive to be active in keeping this tool working and meeting your needs in a timely fashion.
+file downloader resource is a community supported concourse resource. Opening issues for questions, feature requests and/or bugs is the best path to getting "support". We strive to be active in keeping this tool working and meeting your needs in a timely fashion.
 
 ## Source Configuration
 
@@ -32,9 +32,7 @@ The `git` provider will retrieve new configuration when a commit to repository o
 
 * `private_key`: *Optional.* The SSH private key to use when pulling from/pushing to to the repository.
 
-* `username`: *Optional.* Username for HTTP(S) auth when pulling/pushing.
-   This is needed when only HTTP/HTTPS protocol for git is available (which does not support private key auth)
-   and auth is required.
+* `username`: *Optional.* Username for HTTP(S) auth when pulling/pushing. This is needed when only HTTP/HTTPS protocol for git is available (which does not support private key auth) and auth is required.
 
 * `password`: *Optional.* Password for HTTP(S) auth when pulling/pushing.
 
@@ -42,7 +40,7 @@ The `git` provider will retrieve new configuration when a commit to repository o
 
 ### File Provider
 
-There is 2 supported file providers
+There are 2 supported file providers
 
 ### `pivnet` provider
 
@@ -56,19 +54,15 @@ The `s3` provider works by downloading file from s3
 
 * `bucket`: *Required.* The name of the bucket.
 
-* `access_key_id`: *Optional.* The AWS access key to use when accessing the
-  bucket.
+* `access_key_id`: *Optional.* The AWS access key to use when accessing the bucket.
 
-* `secret_access_key`: *Optional.* The AWS secret key to use when accessing
-  the bucket.
+* `secret_access_key`: *Optional.* The AWS secret key to use when accessing the bucket.
 
-* `region_name`: *Optional.* The region the bucket is in. Defaults to
-  `us-east-1`.
+* `region_name`: *Optional.* The region the bucket is in. Defaults to `us-east-1`.
 
 * `endpoint`: *Optional.* Custom endpoint for using S3 compatible provider.
 
-* `disable_ssl`: *Optional.* Disable SSL for the endpoint, useful for S3
-  compatible providers without SSL.
+* `disable_ssl`: *Optional.* Disable SSL for the endpoint, useful for S3 compatible providers without SSL.
 
 * `skip_ssl_verification`: *Optional.* Skip SSL verification for S3 endpoint. Useful for S3 compatible providers using self-signed SSL certificates.
 
@@ -76,7 +70,7 @@ The `s3` provider works by downloading file from s3
 
 ### Sample Configuration
 
-``` yaml
+```yaml
 version: 2.1.5
 product: elastic-runtime
 file_pattern: srt-*.pivotal
@@ -96,12 +90,11 @@ stemcell_file_pattern: "bosh-stemcell-*-vsphere-esxi-ubuntu-trusty-go_agent.tgz"
 
 * `stemcell_product`: *Optional.* Default to `stemcells` Stemcells product slug
 
-
 ### Example
 
 With the following resource configuration:
 
-``` yaml
+```yaml
 resource_types:
 - name: file-downloader
   type: docker-image
@@ -110,40 +103,42 @@ resource_types:
 ```
 
 Using Pivnet file provider
-``` yaml
+
+```yaml
 resources:
 - name: pivnet-files
   type: file-downloader
   source:
     config_provider: git
-    version_root: {{folder_path_in_git_repo}}
+    version_root: ((folder_path_in_git_repo))
     uri: git@github.com:pivotalservices/your_repo.git
-    private_key: {{git_private_key}}
+    private_key: ((git_private_key))
     branch: master
     file_provider: pivnet
-    pivnet_token: {{pivnet_token}}
+    pivnet_token: ((pivnet_token))
 ```
 
 Using s3 file provider
-``` yaml
+
+```yaml
 resources:
 - name: pivnet-files
   type: file-downloader
   source:
     config_provider: git
-    version_root: {{folder_path_in_git_repo}}
+    version_root: ((folder_path_in_git_repo))
     uri: git@github.com:pivotalservices/your_repo.git
-    private_key: {{git_private_key}}
+    private_key: ((git_private_key))
     branch: master
     file_provider: s3
-    bucket: {{s3_bucket}}
-    access_key_id: {{s3_access_key}}
-    secret_access_key: {{s3_secret_access_key}}
+    bucket: ((s3_bucket))
+    access_key_id: ((s3_access_key))
+    secret_access_key: ((s3_secret_access_key))
 ```
 
 To retrieve files for a opsman product with a `get`:
 
-``` yaml
+```yaml
 plan:
 - get: image
   resource: pivnet-files
@@ -153,16 +148,15 @@ plan:
 
 Opsman product configuration in git
 
-``` yaml
+```yaml
 version: 2.1.3
 product: ops-manager
 file_pattern: pcf-vsphere-*.ova
 ```
 
-
 Or, to pull .pivotal and stemcells for cf product with `get`:
 
-``` yaml
+```yaml
 plan:
 - aggregate:
   - get: cf
@@ -178,7 +172,7 @@ plan:
 
 cf product configuration in git
 
-``` yaml
+```yaml
 version: 2.1.5
 product: elastic-runtime
 file_pattern: cf-*.pivotal
@@ -188,7 +182,7 @@ stemcell_file_pattern: "bosh-stemcell-*-vsphere-esxi-ubuntu-trusty-go_agent.tgz"
 
 ## Behavior
 
-### `check`: Report the current version based on configuration provider.
+### `check`: Report the current version based on configuration provider
 
 Detects new versions
 
@@ -200,7 +194,7 @@ Based on the `version` from the check will parse the configuration file for give
 
 * `product`: *Required.* name of .yml file in `version_root`
 
-* `stemcell`: *optional. default false* true/false indicates where to download stemcell based on `stemcell_version` and `stemcell_file_pattern` in the <product>.yml file
+* `stemcell`: *optional. default false* true/false indicates where to download stemcell based on `stemcell_version` and `stemcell_file_pattern` in the `<product>.yml` file
 
 * `unpack`: *optional. default false* true/false indicates unpack the downloaded file
 
