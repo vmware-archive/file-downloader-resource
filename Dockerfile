@@ -5,3 +5,4 @@ RUN git config --global user.name "git"
 COPY check-linux /opt/resource/check
 COPY in-linux /opt/resource/in
 COPY out-linux /opt/resource/out
+RUN chmod +x /opt/resource/*
