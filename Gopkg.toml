@@ -24,3 +24,7 @@
 [[constraint]]
   branch = "master"
   name = "github.com/sclevine/spec"
+
+[[constraint]]
+  branch = "master"
+  name = "github.com/pivotal-cf/go-pivnet"
