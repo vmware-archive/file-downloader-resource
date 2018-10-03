@@ -27,4 +27,5 @@
 
 [[constraint]]
   branch = "master"
+  source = "https://github.com/calebwashburn/go-pivnet.git"
   name = "github.com/pivotal-cf/go-pivnet"

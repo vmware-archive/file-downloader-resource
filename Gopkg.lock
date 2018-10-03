@@ -70,7 +70,8 @@
   branch = "master"
   name = "github.com/pivotal-cf/go-pivnet"
   packages = [".","download","logger","logshim"]
-  revision = "46331664768e3cf907133f3dae3561f186b5b35d"
+  revision = "7bc1eeb6a671873ba774bd470f000506e5159948"
+  source = "https://github.com/calebwashburn/go-pivnet.git"
 
 [[projects]]
   branch = "master"
@@ -129,6 +130,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "fb5f57b86a8d0e799b3544f8f183b4582009645d7969256e7c0ccf470a3b390a"
+  inputs-digest = "c5d589d42ab329f2203e1816aacb9c53c44141a932202124056ad4967a3841a6"
   solver-name = "gps-cdcl"
   solver-version = 1
