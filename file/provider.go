@@ -26,6 +26,9 @@ func FromSource(source types.Source) (Provider, error) {
 	case types.FileProviderS3:
 		return NewS3Provider(source.AccessKeyID, source.SecretAccessKey, source.RegionName, source.Endpoint, source.Bucket, source.SkipSSLVerification, source.DisableSSL, source.UseV2Signing)
 
+	case types.FileProviderHTTP:
+		return NewHTTPProvider(source.SkipSSLVerification, source.BaseHTTPURI)
+
 	default:
 		return nil, fmt.Errorf("unknown provider: %s", source.FileProvider)
 	}

@@ -40,7 +40,7 @@ The `git` provider will retrieve new configuration when a commit to repository o
 
 ### File Provider
 
-There are 2 supported file providers
+There are 3 supported file providers
 
 ### `pivnet` provider
 
@@ -67,6 +67,12 @@ The `s3` provider works by downloading file from s3
 * `skip_ssl_verification`: *Optional.* Skip SSL verification for S3 endpoint. Useful for S3 compatible providers using self-signed SSL certificates.
 
 * `use_v2_signing`: *Optional.* Use signature v2 signing, useful for S3 compatible providers that do not support v4.
+
+### `http` provider
+
+* `base_http_uri`: *Required.* The base uri that files are located in. This provider builds a URI using the following `<base_http_uri>/<product>/<version>/<file_pattern>` where `<file_pattern>` has `*` replaced by `version`.  Resulting format will be the following as example.  `https://test.file.server/products/elastic-runtime/2.1.5/cf-2.1.5.pivotal`
+
+* `skip_ssl_verification`: *Optional.* Skip SSL verification for https endpoint. Useful for when using https endpoint not signed by public certificate authority.
 
 ### Sample Configuration
 
