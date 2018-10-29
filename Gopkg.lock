@@ -32,6 +32,12 @@
   version = "v1.2.1"
 
 [[projects]]
+  name = "github.com/golang/protobuf"
+  packages = ["proto"]
+  revision = "aa810b61a9c79d51363740d207bb46cf8e620ed5"
+  version = "v1.2.0"
+
+[[projects]]
   name = "github.com/h2non/filetype"
   packages = ["."]
   revision = "cc14fdc9ca0e4c2bafad7458f6ff79fd3947cfbb"
@@ -62,7 +68,7 @@
 
 [[projects]]
   name = "github.com/onsi/gomega"
-  packages = [".","format","gbytes","internal/assertion","internal/asyncassertion","internal/oraclematcher","internal/testingtsupport","matchers","matchers/support/goraph/bipartitegraph","matchers/support/goraph/edge","matchers/support/goraph/node","matchers/support/goraph/util","types"]
+  packages = [".","format","gbytes","ghttp","internal/assertion","internal/asyncassertion","internal/oraclematcher","internal/testingtsupport","matchers","matchers/support/goraph/bipartitegraph","matchers/support/goraph/edge","matchers/support/goraph/node","matchers/support/goraph/util","types"]
   revision = "b6ea1ea48f981d0f615a154a45eabb9dd466556d"
   version = "v1.4.1"
 
@@ -129,6 +135,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "fb5f57b86a8d0e799b3544f8f183b4582009645d7969256e7c0ccf470a3b390a"
+  inputs-digest = "5d03b3dc7f24934b5f39972e366bd341802cbe5415d08ee142859f4773697e57"
   solver-name = "gps-cdcl"
   solver-version = 1

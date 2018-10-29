@@ -64,6 +64,7 @@ type Source struct {
 	SkipSSLVerification  bool               `json:"skip_ssl_verification"`
 	ServerSideEncryption string             `json:"server_side_encryption"`
 	UseV2Signing         bool               `json:"use_v2_signing"`
+	BaseHTTPURI          string             `json:"base_http_uri"`
 }
 
 type ConfigProviderEnum string
@@ -79,6 +80,7 @@ const (
 	FileProviderUnspecified FileProviderEnum = ""
 	FileProviderPivnet      FileProviderEnum = "pivnet"
 	FileProviderS3          FileProviderEnum = "s3"
+	FileProviderHTTP        FileProviderEnum = "http"
 )
 
 type VersionInfo struct {
