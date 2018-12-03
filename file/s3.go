@@ -5,7 +5,6 @@ import (
 	"io"
 	"os"
 	"path"
-	"path/filepath"
 	"strings"
 
 	"crypto/tls"
@@ -96,7 +95,7 @@ func (p *S3Provider) DownloadFile(targetDirectory, productSlug, version, pattern
 	}
 
 	for _, bucketFile := range bucketFiles.Contents {
-		matched, err := filepath.Match(path.Join(productSlug, pattern), *bucketFile.Key)
+		matched, err := Matches(*bucketFile.Key, productSlug, pattern, version)
 		if err != nil {
 			return err
 		}
