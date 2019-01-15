@@ -50,7 +50,7 @@ The `pivnet` provider works by downloading files based on configuration.
 
 ### `s3` provider
 
-The `s3` provider works by downloading file from s3
+The `s3` provider works by downloading files from s3
 
 * `bucket`: *Required.* The name of the bucket.
 
@@ -67,6 +67,8 @@ The `s3` provider works by downloading file from s3
 * `skip_ssl_verification`: *Optional.* Skip SSL verification for S3 endpoint. Useful for S3 compatible providers using self-signed SSL certificates.
 
 * `use_v2_signing`: *Optional.* Use signature v2 signing, useful for S3 compatible providers that do not support v4.
+
+The files must be in folders within the bucket. All stemcells are pulled from a folder named `stemcells`. Product files are pulled from a folder that matches the name of the product defined in the product configuration from the git provider.
 
 ### `http` provider
 
